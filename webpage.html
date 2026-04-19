@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sourav Maity — AI Creator | Web Designer | Songwriter</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#0d1a13;--bg2:#111f17;--bg3:#162b1e;--accent:#4eca7f;--accent2:#a8e6c0;--text:#e8f5ee;--muted:#7aab8a;--border:#1e3328;--card:#13221a;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-weight:300;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 3rem;display:flex;justify-content:space-between;align-items:center;background:rgba(13,26,19,0.85);backdrop-filter:blur(12px);border-bottom:0.5px solid var(--border);}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--accent);letter-spacing:0.03em;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover{color:var(--accent);}
+.nav-cta{background:var(--accent);color:#0d1a13;padding:0.5rem 1.4rem;border-radius:2rem;font-size:0.82rem;font-weight:500;text-decoration:none;letter-spacing:0.05em;transition:opacity 0.2s;}
+.nav-cta:hover{opacity:0.85;}
+.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 3rem 4rem;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 70% 50%, rgba(78,202,127,0.07) 0%, transparent 70%);pointer-events:none;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:0.3;pointer-events:none;}
+.hero-content{max-width:700px;position:relative;z-index:1;}
+.hero-tag{display:inline-flex;align-items:center;gap:0.5rem;background:var(--bg3);border:0.5px solid var(--accent);border-radius:2rem;padding:0.35rem 1rem;font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--accent);letter-spacing:0.1em;margin-bottom:2rem;}
+.hero-tag::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,8vw,6.5rem);line-height:1.0;font-weight:700;margin-bottom:1rem;}
+.hero h1 em{font-style:italic;color:var(--accent);}
+.hero-sub{font-size:1.05rem;color:var(--muted);line-height:1.8;max-width:520px;margin-bottom:2.5rem;}
+.hero-roles{display:flex;flex-wrap:wrap;gap:0.6rem;margin-bottom:2.5rem;}
+.role-pill{background:var(--card);border:0.5px solid var(--border);border-radius:2rem;padding:0.4rem 1rem;font-size:0.8rem;color:var(--accent2);font-family:'DM Mono',monospace;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-primary{background:var(--accent);color:#0d1a13;padding:0.8rem 2rem;border-radius:2rem;text-decoration:none;font-weight:500;font-size:0.9rem;transition:transform 0.2s,opacity 0.2s;}
+.btn-primary:hover{transform:translateY(-2px);opacity:0.9;}
+.btn-outline{border:0.5px solid var(--muted);color:var(--muted);padding:0.8rem 2rem;border-radius:2rem;text-decoration:none;font-size:0.9rem;transition:all 0.2s;}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+section{padding:5rem 3rem;}
+.section-label{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--accent);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.8rem;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;margin-bottom:1rem;line-height:1.15;}
+.section-title em{font-style:italic;color:var(--accent);}
+.divider{width:3rem;height:1px;background:var(--accent);margin-bottom:3rem;opacity:0.5;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.about-text p{color:var(--muted);line-height:1.9;margin-bottom:1rem;font-size:0.97rem;}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.stat-card{background:var(--card);border:0.5px solid var(--border);border-radius:12px;padding:1.5rem;text-align:center;}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--accent);font-weight:700;}
+.stat-lbl{font-size:0.78rem;color:var(--muted);margin-top:0.3rem;letter-spacing:0.05em;}
+.skills-section{background:var(--bg2);}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;}
+.skill-card{background:var(--card);border:0.5px solid var(--border);border-radius:12px;padding:1.5rem;}
+.skill-name{font-size:0.9rem;color:var(--text);margin-bottom:0.8rem;font-weight:400;}
+.skill-bar{height:3px;background:var(--border);border-radius:2px;overflow:hidden;}
+.skill-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;transform-origin:left;animation:fillBar 1.5s ease forwards;}
+@keyframes fillBar{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+.skill-pct{font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--accent);text-align:right;margin-top:0.4rem;}
+.exp-timeline{position:relative;padding-left:2rem;}
+.exp-timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--border);}
+.exp-item{position:relative;margin-bottom:3rem;padding-left:1.5rem;}
+.exp-item::before{content:'';position:absolute;left:-2rem;top:0.4rem;width:8px;height:8px;background:var(--accent);border-radius:50%;box-shadow:0 0 0 3px var(--bg);}
+.exp-date{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--accent);letter-spacing:0.1em;margin-bottom:0.4rem;}
+.exp-role{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:0.2rem;}
+.exp-company{font-size:0.85rem;color:var(--muted);margin-bottom:0.8rem;}
+.exp-list{list-style:none;padding:0;}
+.exp-list li{font-size:0.88rem;color:var(--muted);padding:0.3rem 0;padding-left:1rem;position:relative;line-height:1.6;}
+.exp-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:0.75rem;}
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;}
+.edu-card{background:var(--card);border:0.5px solid var(--border);border-radius:16px;padding:1.8rem;}
+.edu-icon{width:40px;height:40px;background:rgba(78,202,127,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:18px;}
+.edu-degree{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:0.3rem;}
+.edu-school{font-size:0.85rem;color:var(--accent);margin-bottom:0.2rem;}
+.edu-loc{font-size:0.78rem;color:var(--muted);}
+.portfolio-section{background:var(--bg2);}
+.songs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;}
+.song-card{background:var(--card);border:0.5px solid var(--border);border-radius:16px;overflow:hidden;transition:transform 0.25s,border-color 0.25s;}
+.song-card:hover{transform:translateY(-4px);border-color:var(--accent);}
+.song-thumb{height:160px;display:flex;align-items:center;justify-content:center;font-size:3rem;}
+.song-thumb.love{background:linear-gradient(135deg,#1a0a12,#3d1525);}
+.song-thumb.her{background:linear-gradient(135deg,#1a0a1a,#2d1038);}
+.song-thumb.kali{background:linear-gradient(135deg,#0d0d0d,#1a1010);}
+.song-meta{padding:1.2rem;}
+.song-title{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:0.3rem;}
+.song-desc{font-size:0.8rem;color:var(--muted);margin-bottom:0.8rem;}
+.song-tag{display:inline-block;background:rgba(78,202,127,0.1);border:0.5px solid rgba(78,202,127,0.2);color:var(--accent);font-size:0.72rem;padding:0.2rem 0.7rem;border-radius:2rem;font-family:'DM Mono',monospace;}
+.yt-link{display:inline-flex;align-items:center;gap:0.4rem;color:var(--accent);font-size:0.8rem;text-decoration:none;margin-top:0.6rem;font-family:'DM Mono',monospace;}
+.yt-link:hover{text-decoration:underline;}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.5rem;}
+.price-card{background:var(--card);border:0.5px solid var(--border);border-radius:20px;padding:2rem;position:relative;transition:border-color 0.25s;}
+.price-card.featured{border-color:var(--accent);}
+.featured-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--accent);color:#0d1a13;font-size:0.72rem;font-weight:500;padding:0.25rem 1rem;border-radius:0 0 8px 8px;font-family:'DM Mono',monospace;letter-spacing:0.05em;white-space:nowrap;}
+.price-tier{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;}
+.price-name{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:0.5rem;}
+.price-amount{font-size:2rem;font-weight:500;color:var(--accent);margin-bottom:0.3rem;}
+.price-amount span{font-size:0.9rem;color:var(--muted);}
+.price-desc{font-size:0.83rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.6;}
+.price-features{list-style:none;margin-bottom:1.5rem;}
+.price-features li{font-size:0.84rem;color:var(--text);padding:0.4rem 0;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:0.5rem;}
+.price-features li::before{content:'✓';color:var(--accent);font-size:0.75rem;flex-shrink:0;}
+.price-btn{display:block;text-align:center;padding:0.75rem;border-radius:2rem;text-decoration:none;font-size:0.85rem;transition:all 0.2s;cursor:pointer;}
+.price-btn.outline{border:0.5px solid var(--muted);color:var(--muted);background:none;}
+.price-btn.outline:hover{border-color:var(--accent);color:var(--accent);}
+.price-btn.solid{background:var(--accent);color:#0d1a13;font-weight:500;border:none;}
+.price-btn.solid:hover{opacity:0.88;}
+.pricing-cat-label{font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1rem;}
+.running-note{margin-top:2rem;background:var(--card);border:0.5px solid var(--border);border-radius:14px;padding:1.2rem 1.5rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;}
+.running-note-label{font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;}
+.running-note-val{font-size:1.1rem;font-weight:500;color:var(--text);}
+.running-sep{width:1px;height:40px;background:var(--border);}
+.running-note-desc{font-size:0.8rem;color:var(--muted);}
+.contact-section{background:var(--bg2);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.contact-info{display:flex;flex-direction:column;gap:1.2rem;}
+.contact-item{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:var(--card);border:0.5px solid var(--border);border-radius:12px;}
+.contact-icon{width:38px;height:38px;background:rgba(78,202,127,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.contact-label{font-size:0.72rem;color:var(--muted);font-family:'DM Mono',monospace;letter-spacing:0.08em;}
+.contact-val{font-size:0.88rem;color:var(--text);}
+.contact-form{display:flex;flex-direction:column;gap:1rem;}
+.contact-form input,.contact-form textarea{width:100%;background:var(--card);border:0.5px solid var(--border);border-radius:10px;padding:0.9rem 1.1rem;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.88rem;outline:none;transition:border-color 0.2s;}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--accent);}
+.contact-form textarea{height:120px;resize:none;}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--muted);}
+.form-submit{background:var(--accent);color:#0d1a13;border:none;padding:0.85rem 2rem;border-radius:2rem;font-size:0.9rem;font-weight:500;cursor:pointer;transition:opacity 0.2s;font-family:'Outfit',sans-serif;}
+.form-submit:hover{opacity:0.88;}
+footer{padding:2rem 3rem;border-top:0.5px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-brand{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--accent);}
+.footer-copy{font-size:0.78rem;color:var(--muted);font-family:'DM Mono',monospace;}
+.footer-links{display:flex;gap:1.5rem;}
+.footer-links a{color:var(--muted);text-decoration:none;font-size:0.8rem;transition:color 0.2s;}
+.footer-links a:hover{color:var(--accent);}
+.fade-in{opacity:0;transform:translateY(24px);animation:fadeIn 0.7s ease forwards;}
+@keyframes fadeIn{to{opacity:1;transform:translateY(0);}}
+.delay-1{animation-delay:0.1s;}.delay-2{animation-delay:0.2s;}.delay-3{animation-delay:0.3s;}.delay-4{animation-delay:0.4s;}
+@media(max-width:700px){
+  nav{padding:1rem 1.2rem;}.nav-links{display:none;}
+  .hero{padding:7rem 1.5rem 3rem;}
+  section{padding:3rem 1.5rem;}
+  .about-grid,.contact-grid{grid-template-columns:1fr;}
+  footer{flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+ 
+<nav>
+  <div class="nav-logo">Sourav Maity</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Work</a></li>
+    <li><a href="#portfolio">Songs</a></li>
+    <li><a href="#pricing">Hire Me</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Let's Work</a>
+</nav>
+ 
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag fade-in">Available for freelance work</div>
+    <h1 class="fade-in delay-1">Sourav<br><em>Maity</em></h1>
+    <div class="hero-roles fade-in delay-2">
+      <span class="role-pill">AI Creator</span>
+      <span class="role-pill">Web Designer</span>
+      <span class="role-pill">Songwriter</span>
+      <span class="role-pill">Digital Artist</span>
+      <span class="role-pill">Poster Designer</span>
+    </div>
+    <p class="hero-sub fade-in delay-3">Blending code, creativity &amp; music — crafting captivating digital experiences and soulful lyrical compositions from Gurgaon, India.</p>
+    <div class="hero-btns fade-in delay-4">
+      <a href="#portfolio" class="btn-primary">View My Work</a>
+      <a href="#pricing" class="btn-outline">Hire Me</a>
+    </div>
+  </div>
+</section>
+ 
+<section id="about">
+  <div class="section-label">Who I am</div>
+  <div class="section-title">Creative at Heart,<br><em>Technical by Craft</em></div>
+  <div class="divider"></div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a dynamic lyricist and web developer with a passion for creating captivating experiences — whether that's through a beautifully crafted website or an emotionally resonant song.</p>
+      <p>With expertise in music theory, emotional storytelling, and visual design, I bridge the gap between technology and artistry. I work with record labels, artists, and businesses to bring their creative visions to life.</p>
+      <p>Currently pursuing a Bachelor of Interior Design at Gautam Buddha University, I'm continuously expanding my skills across AI tools, web development, and musical composition.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card"><div class="stat-num">3+</div><div class="stat-lbl">Songs Released</div></div>
+      <div class="stat-card"><div class="stat-num">20%</div><div class="stat-lbl">Avg. Engagement Boost</div></div>
+      <div class="stat-card"><div class="stat-num">30%</div><div class="stat-lbl">Web Traffic Increase</div></div>
+      <div class="stat-card"><div class="stat-num">2+</div><div class="stat-lbl">Years Freelancing</div></div>
+    </div>
+  </div>
+</section>
+ 
+<section id="skills" class="skills-section">
+  <div class="section-label">What I do</div>
+  <div class="section-title">Skills &amp; <em>Expertise</em></div>
+  <div class="divider"></div>
+  <div class="skills-grid">
+    <div class="skill-card"><div class="skill-name">Song Writing</div><div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div><div class="skill-pct">95%</div></div>
+    <div class="skill-card"><div class="skill-name">Poster Designing</div><div class="skill-bar"><div class="skill-fill" style="width:87%"></div></div><div class="skill-pct">87%</div></div>
+    <div class="skill-card"><div class="skill-name">Project Management</div><div class="skill-bar"><div class="skill-fill" style="width:86%"></div></div><div class="skill-pct">86%</div></div>
+    <div class="skill-card"><div class="skill-name">Web Designing</div><div class="skill-bar"><div class="skill-fill" style="width:83%"></div></div><div class="skill-pct">83%</div></div>
+    <div class="skill-card"><div class="skill-name">Team Work</div><div class="skill-bar"><div class="skill-fill" style="width:81%"></div></div><div class="skill-pct">81%</div></div>
+    <div class="skill-card"><div class="skill-name">AI Tools</div><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div><div class="skill-pct">88%</div></div>
+  </div>
+</section>
+ 
+<section id="experience">
+  <div class="section-label">My journey</div>
+  <div class="section-title">Professional <em>Experience</em></div>
+  <div class="divider"></div>
+  <div class="exp-timeline">
+    <div class="exp-item">
+      <div class="exp-date">SEP 2024 — PRESENT</div>
+      <div class="exp-role">Song Writer</div>
+      <div class="exp-company">Freelancer · Mr. Lyricist</div>
+      <ul class="exp-list">
+        <li>Crafted lyrical content and composed musical pieces with melodies, harmonies and rhythmic structures</li>
+        <li>Negotiated royalty contracts ensuring fair compensation for artistic contributions</li>
+        <li>Built an online portfolio showcasing diverse compositions across genres, attracting collaborators and clients</li>
+        <li>Consistently sought feedback from peers and mentors to improve song quality</li>
+      </ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">JUL 2025 — PRESENT</div>
+      <div class="exp-role">Poster &amp; Website Designer</div>
+      <div class="exp-company">Freelancer · LyroWeb / WebbyPie</div>
+      <ul class="exp-list">
+        <li>Created website designs that enhanced user experience and increased engagement by 20%</li>
+        <li>Led company website redesigns resulting in 30% increase in web traffic</li>
+        <li>Produced 3D, classy and custom poster designs tailored to client requirements</li>
+      </ul>
+    </div>
+  </div>
+</section>
+ 
+<section style="background:var(--bg2);">
+  <div class="section-label">Background</div>
+  <div class="section-title"><em>Education</em> &amp; Training</div>
+  <div class="divider"></div>
+  <div class="edu-grid">
+    <div class="edu-card"><div class="edu-icon">🎓</div><div class="edu-degree">Bachelor of Interior Design</div><div class="edu-school">Gautam Buddha University</div><div class="edu-loc">Greater Noida, UP · 2025 – Present</div></div>
+    <div class="edu-card"><div class="edu-icon">💻</div><div class="edu-degree">DCA (Diploma in Computer Applications)</div><div class="edu-school">SDK ITS Solution Pvt Ltd.</div><div class="edu-loc">Gurgaon, HR · Jul–Oct 2025</div></div>
+    <div class="edu-card"><div class="edu-icon">🤖</div><div class="edu-degree">AI Tools Workshop</div><div class="edu-school">Be10x</div><div class="edu-loc">Online · November 2025</div></div>
+  </div>
+</section>
+ 
+<section id="portfolio" class="portfolio-section">
+  <div class="section-label">Discography</div>
+  <div class="section-title">Song <em>Portfolio</em></div>
+  <div class="divider"></div>
+  <div class="songs-grid">
+    <div class="song-card">
+      <div class="song-thumb love">💕</div>
+      <div class="song-meta"><div class="song-title">Aaj Kal Ka Pyaar</div><div class="song-desc">A modern take on love — emotional, relatable, and soulful.</div><span class="song-tag">Romance</span><br><a class="yt-link" href="https://www.youtube.com/results?search_query=Aaj+Kal+Ka+Pyaar+Mr.+Lyricist" target="_blank">▶ Search on YouTube</a></div>
+    </div>
+    <div class="song-card">
+      <div class="song-thumb her">🌸</div>
+      <div class="song-meta"><div class="song-title">She / Her</div><div class="song-desc">When she is your all — a heartfelt tribute to love and devotion.</div><span class="song-tag">Love</span><br><a class="yt-link" href="https://www.youtube.com/results?search_query=She+Her+Mr.+Lyricist" target="_blank">▶ Search on YouTube</a></div>
+    </div>
+    <div class="song-card">
+      <div class="song-thumb kali">⚡</div>
+      <div class="song-meta"><div class="song-title">Kalyug</div><div class="song-desc">The age of darkness unfolds — a powerful, atmospheric composition.</div><span class="song-tag">Concept</span><br><a class="yt-link" href="https://www.youtube.com/results?search_query=Kalyug+Mr.+Lyricist" target="_blank">▶ Search on YouTube</a></div>
+    </div>
+  </div>
+  <p style="margin-top:2rem;color:var(--muted);font-size:0.85rem;font-family:'DM Mono',monospace;">Search on YouTube: Song name + "Mr. Lyricist" · More releases coming this year!</p>
+</section>
+ 
+<section id="pricing">
+  <div class="section-label">Work with me</div>
+  <div class="section-title">Hire Me &amp; <em>Pricing</em></div>
+  <div class="divider"></div>
+  <div class="pricing-cat-label">— Website Making Charges</div>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-tier">Basic</div>
+      <div class="price-name">Basic Package</div>
+      <div class="price-amount">₹7,000 <span>/ project</span></div>
+      <div class="price-desc">Ideal for individuals and small businesses needing a clean, fast web presence.</div>
+      <ul class="price-features"><li>Custom HTML/CSS Design</li><li>Mobile Responsive</li><li>Contact Section</li><li>2 Revisions</li></ul>
+      <a href="#contact" class="price-btn outline">Get in Touch</a>
+    </div>
+    <div class="price-card featured">
+      <div class="featured-badge">Most Popular</div>
+      <div class="price-tier">Standard</div>
+      <div class="price-name">Standard Package</div>
+      <div class="price-amount">₹12,000 <span>/ project</span></div>
+      <div class="price-desc">Multi-page website with advanced features, perfect for growing brands.</div>
+      <ul class="price-features"><li>Multi-page Website</li><li>Custom UI/UX Design</li><li>SEO Basics</li><li>Unlimited Revisions</li><li>1 Month Support</li></ul>
+      <a href="#contact" class="price-btn solid">Hire Me Now</a>
+    </div>
+    <div class="price-card">
+      <div class="price-tier">Premium</div>
+      <div class="price-name">Premium Package</div>
+      <div class="price-amount">₹30,000 <span>/ project</span></div>
+      <div class="price-desc">Full-scale professional website with advanced integrations and premium support.</div>
+      <ul class="price-features"><li>Full Custom Development</li><li>Advanced UI Animations</li><li>CMS / Dynamic Features</li><li>Priority Support</li><li>3 Months Maintenance</li></ul>
+      <a href="#contact" class="price-btn outline">Get in Touch</a>
+    </div>
+    <div class="price-card">
+      <div class="price-tier">Creative</div>
+      <div class="price-name">Songwriting</div>
+      <div class="price-amount">₹5,000 <span>/ song</span></div>
+      <div class="price-desc">Original lyrics, melodies and full compositions crafted to your vision and genre.</div>
+      <ul class="price-features"><li>Custom Lyrics &amp; Melody</li><li>Any Genre / Instrument</li><li>Royalty Negotiation Help</li><li>3 Revisions</li></ul>
+      <a href="#contact" class="price-btn outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="pricing-cat-label" style="margin-top:2.5rem;">— Website Running Charges</div>
+  <div class="running-note">
+    <div><div class="running-note-label">Domain</div><div class="running-note-val">.com Service</div></div>
+    <div class="running-sep"></div>
+    <div><div class="running-note-label">Annual Cost</div><div class="running-note-val">₹3,001 <span style="font-size:0.8rem;color:var(--muted);">/ year</span></div></div>
+    <div class="running-sep"></div>
+    <div class="running-note-desc">Includes domain registration &amp; renewal for your .com website.</div>
+  </div>
+  <p style="margin-top:1.5rem;color:var(--muted);font-size:0.82rem;text-align:center;font-family:'DM Mono',monospace;">Custom packages available · Contact for exact quotes · Poster design add-on available</p>
+</section>
+ 
+<section id="contact" class="contact-section">
+  <div class="section-label">Get in touch</div>
+  <div class="section-title">Let's <em>Create</em> Together</div>
+  <div class="divider"></div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item"><div class="contact-icon">✉</div><div><div class="contact-label">Email</div><div class="contact-val">its.sourav5198@gmail.com</div></div></div>
+      <div class="contact-item"><div class="contact-icon">📞</div><div><div class="contact-label">Phone</div><div class="contact-val">+91 8595069417</div></div></div>
+      <div class="contact-item"><div class="contact-icon">🌐</div><div><div class="contact-label">Website</div><div class="contact-val"><a href="https://lyroweb.durablesites.com" target="_blank" style="color:var(--accent);text-decoration:none;">lyroweb.durablesites.com</a></div></div></div>
+      <div class="contact-item"><div class="contact-icon">📍</div><div><div class="contact-label">Location</div><div class="contact-val">Gurgaon, Haryana, IN</div></div></div>
+    </div>
+    <div class="contact-form">
+      <input type="text" placeholder="Your name" />
+      <input type="email" placeholder="Your email" />
+      <input type="text" placeholder="Service (Web Design / Song / Poster)" />
+      <textarea placeholder="Tell me about your project..."></textarea>
+      <button class="form-submit" onclick="alert('Message sent! Sourav will get back to you soon.')">Send Message</button>
+    </div>
+  </div>
+</section>
+ 
+<footer>
+  <div class="footer-brand">Sourav Maity</div>
+  <div class="footer-copy">© 2026 · All rights reserved · LyroWeb</div>
+  <div class="footer-links">
+    <a href="https://lyroweb.durablesites.com" target="_blank">LyroWeb</a>
+    <a href="#portfolio">Songs</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+ 
+</body>
+</html>
